@@ -1,34 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Solar Map Project
+Rim Vilgalys
+vilgalys@gmail.com
 
-## Getting Started
+## Features
+* Exposes a map with a searchable address
+* User can draw Polygon
+* User can customize Nominal Power of their chosen panel
+* App will calculate total Nominal Power based on area available
+  
+## Stack
+* Next.js
+* TailwindCSS
+* Google Maps
+  
+## Setup & Install
+Follow these commands to run the project locally. This will require a working install of Node & npm. Project was tested on Node 12.
 
-First, run the development server:
+`> git clone <this>`
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+`> cd solarmap`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`> npm install`
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+`> npm run dev`
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Provide a GOOGLE_API_KEY in a `.env` file in the root directory. This api key will need to be enabled for ... and whitelisted for localhost.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Assumptions and Limitations
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* Average Solar Panel Size is 65" L x 39" W (https://news.energysage.com/average-solar-panel-size-weight/)
+* It is assumed that drawn polygons will fit solar panels -- area is calculated but a packing algorithm is not used to find the ideal arrangement of panels.

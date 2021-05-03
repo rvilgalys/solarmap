@@ -8,6 +8,20 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+  --spanish-viridian: #007f5fff;
+  --spanish-green: #2b9348ff;
+  --green-ryb: #55a630ff;
+  --apple-green: #80b918ff;
+  --android-green: #aacc00ff;
+  --bitter-lemon: #bfd200ff;
+  --pear: #d4d700ff;
+  --titanium-yellow: #dddf00ff;
+  --xanthic: #eeef20ff;
+  --maximum-yellow: #ffff3fff;
+}
+
+main {
 }
 
 a {

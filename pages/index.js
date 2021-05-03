@@ -2,8 +2,8 @@ import Layout from "../components/Layout";
 
 const Index = () => {
   return (
-    <Layout>
-      <section className="w-full p-8 bg-blue-300"></section>
+    <Layout title="The Solar Map">
+      <section className="w-full p-8 bg-dark"></section>
     </Layout>
   );
 };
