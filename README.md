@@ -9,9 +9,9 @@ vilgalys@gmail.com
 * App will calculate total Nominal Power based on area available
   
 ## Stack
-* Next.js
-* TailwindCSS
-* Google Maps
+* Next.js (SSR & Framework)
+* TailwindCSS (CSS & Default Styles)
+* Google Maps (Maps)
   
 ## Setup & Install
 Follow these commands to run the project locally. This will require a working install of Node & npm. Project was tested on Node 12.
