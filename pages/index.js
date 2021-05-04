@@ -1,4 +1,5 @@
 import Layout from "../components/Layout";
+import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 
 const Index = () => {
   return (

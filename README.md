@@ -22,9 +22,10 @@ Follow these commands to run the project locally. This will require a working in
 
 `> npm install`
 
+Provide a NEXT_PUBLIC_GOOGLE_API_KEY in an `.env.local` file in the root directory. This api key will need to be enabled for ... and whitelisted for localhost.
+
 `> npm run dev`
 
-Provide a GOOGLE_API_KEY in a `.env` file in the root directory. This api key will need to be enabled for ... and whitelisted for localhost.
 
 ## Assumptions and Limitations
 
