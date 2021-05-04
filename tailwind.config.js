@@ -18,6 +18,10 @@ module.exports = {
         light: "#e8eddf",
       },
     },
+    fontFamily: {
+      display: ["Source Sans Pro", "sans-serif"],
+      body: ["Lato", "sans-serif"],
+    },
   },
   variants: {
     extend: {},
