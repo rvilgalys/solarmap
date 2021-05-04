@@ -19,7 +19,7 @@ const Layout = ({
         colorMode={colorMode}
         onColorModeChange={onColorModeChange}
       ></LayoutHeader>
-      <main>{children}</main>
+      <main className="w-full mt-8 flex flex-col items-center">{children}</main>
       <footer></footer>
     </div>
   );

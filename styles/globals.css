@@ -36,15 +36,15 @@ h6 {
 .dark-mode {
   background-color: var(--dark-mode-bg);
   color: var(--light-mode-bg);
-  animation: 0.3s background-transition 0 ease-in-out 1 normal;
-  -webkit-animation: 0.3s background-transition 0 ease-in-out 1 normal;
+  animation: darkmode-transition 0.3s ease-in-out;
+  -webkit-animation: darkmode-transition 0.3s ease-in-out;
 }
 
 .light-mode {
   background-color: var(--light-mode-bg);
   color: var(--dark-mode-bg);
-  animation: 0.3s background-transition 0 ease-in-out 1 reverse;
-  -webkit-animation: 0.3s background-transition 0 ease-in-out 1 reverse;
+  animation: lightmode-transition 0.3s ease-in-out;
+  -webkit-animation: lightmode-transition 0.3s ease-in-out;
 }
 
 a {
@@ -56,7 +56,7 @@ a {
   box-sizing: border-box;
 }
 
-@keyframes background-transition {
+@keyframes lightmode-transition {
   0% {
     background-color: var(--dark-mode-bg);
     color: var(--light-mode-bg);
@@ -67,7 +67,7 @@ a {
   }
 }
 
-@-webkit-keyframes background-transition {
+@-webkit-keyframes lightmode-transition {
   0% {
     background-color: var(--dark-mode-bg);
     color: var(--light-mode-bg);
@@ -75,5 +75,27 @@ a {
   100% {
     background-color: var(--light-mode-bg);
     color: var(--dark-mode-bg);
+  }
+}
+
+@keyframes darkmode-transition {
+  0% {
+    background-color: var(--light-mode-bg);
+    color: var(--dark-mode-bg);
+  }
+  100% {
+    background-color: var(--dark-mode-bg);
+    color: var(--light-mode-bg);
+  }
+}
+
+@-webkit-keyframes darkmode-transition {
+  0% {
+    background-color: var(--light-mode-bg);
+    color: var(--dark-mode-bg);
+  }
+  100% {
+    background-color: var(--dark-mode-bg);
+    color: var(--light-mode-bg);
   }
 }
