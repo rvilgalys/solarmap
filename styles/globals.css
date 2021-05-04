@@ -36,13 +36,15 @@ h6 {
 .dark-mode {
   background-color: var(--dark-mode-bg);
   color: var(--light-mode-bg);
-  animation: background-transition 0.3s ease-in-out 1 normal;
+  animation: 0.3s background-transition 0 ease-in-out 1 normal;
+  -webkit-animation: 0.3s background-transition 0 ease-in-out 1 normal;
 }
 
 .light-mode {
   background-color: var(--light-mode-bg);
   color: var(--dark-mode-bg);
-  animation: background-transition 0.3s ease-in-out 1 reverse;
+  animation: 0.3s background-transition 0 ease-in-out 1 reverse;
+  -webkit-animation: 0.3s background-transition 0 ease-in-out 1 reverse;
 }
 
 a {
@@ -55,11 +57,22 @@ a {
 }
 
 @keyframes background-transition {
-  from {
+  0% {
     background-color: var(--dark-mode-bg);
     color: var(--light-mode-bg);
   }
-  to {
+  100% {
+    background-color: var(--light-mode-bg);
+    color: var(--dark-mode-bg);
+  }
+}
+
+@-webkit-keyframes background-transition {
+  0% {
+    background-color: var(--dark-mode-bg);
+    color: var(--light-mode-bg);
+  }
+  100% {
     background-color: var(--light-mode-bg);
     color: var(--dark-mode-bg);
   }

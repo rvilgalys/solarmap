@@ -11,7 +11,7 @@ const LayoutHeader = ({ colorMode = "dark", onColorModeChange }) => {
       >
         {colorMode === "dark" ? <SunIcon></SunIcon> : <MoonIcon></MoonIcon>}
       </button>
-      <h1 className="ml-4 text-3xl">The Solar Map</h1>
+      <h1 className="ml-4 text-3xl p-2 font-display">The Solar Map</h1>
     </header>
   );
 };

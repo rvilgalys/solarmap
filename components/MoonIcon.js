@@ -6,7 +6,7 @@ const MoonIcon = ({ className = "" }) => {
       height="36"
       viewBox="0 0 24 24"
       fill="currentColor"
-      stroke-width="2"
+      strokeWidth="2"
       display="block"
       className={className}
       id="MoonFill"
