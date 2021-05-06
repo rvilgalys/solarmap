@@ -1,8 +1,10 @@
 import Layout from "../components/Layout";
 import { GoogleMap, useLoadScript, Polygon } from "@react-google-maps/api";
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useMemo } from "react";
+import { getAreaOfPolygon } from "geolib";
 import PlacesSearch from "../components/PlacesSearch";
 import PolygonUI from "../components/PolygonUI";
+import AreaDisplay from "../components/AreaDisplay";
 
 const libraries = ["places"]; // prevents reloading of google maps
 
@@ -28,6 +30,11 @@ const Index = () => {
   const googleMapRef = useRef(null);
   const polygonRef = useRef(null);
 
+  const area_m3 = useMemo(() => {
+    if (!paths) return null;
+    return getAreaOfPolygon(paths);
+  }, [paths]);
+
   // !! ######################################
   // !! ########### Event Handlers ###########
   // !! ######################################
@@ -46,8 +53,10 @@ const Index = () => {
 
   const handleMapClick = (click) => {
     if (!isDrawing) return;
-    if (!paths)
+    if (!paths) {
       setPaths([{ lat: click.latLng.lat(), lng: click.latLng.lng() }]);
+      return;
+    }
     setPaths((prev) => [
       ...prev,
       { lat: click.latLng.lat(), lng: click.latLng.lng() },
@@ -122,6 +131,11 @@ const Index = () => {
               ></Polygon>
             ) : null}
           </GoogleMap>
+          <AreaDisplay
+            className="mt-4"
+            isAreaSelected={paths !== null && paths.length > 2}
+            area_m3={area_m3}
+          ></AreaDisplay>
         </>
       ) : (
         <span className="text-xl border-b-2 border-red-500">
