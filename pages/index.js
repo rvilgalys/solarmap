@@ -7,19 +7,30 @@ import PolygonUI from "../components/PolygonUI";
 const libraries = ["places"]; // prevents reloading of google maps
 
 const Index = () => {
+  // !! ######################################
+  // !! ########### Hooks & Setup ###########
+  // !! ######################################
+
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
     libraries,
   });
   const [colorMode, setColorMode] = useState("dark"); // dark, light
   const [isDrawing, setIsDrawing] = useState(false);
+
+  // trivia: map center is Uluru, Australia
   const [mapCenter, setMapCenter] = useState({
-    lat: -3.745,
-    lng: -38.523,
+    lat: -25.3444,
+    lng: 131.0369,
   });
+
   const [paths, setPaths] = useState(null);
   const googleMapRef = useRef(null);
   const polygonRef = useRef(null);
+
+  // !! ######################################
+  // !! ########### Event Handlers ###########
+  // !! ######################################
 
   const handleColorModeChange = () => {
     setColorMode((prev) => (prev === "dark" ? "light" : "dark"));
@@ -52,16 +63,28 @@ const Index = () => {
     map.setTilt(0); // better w/ 2D shapes
   };
 
+  const handlePolygonEdit = () => {
+    // triggers on mouseUp -- we defer to the state from Google Maps
+    // & reset our own state to match
+
+    if (!polygonRef.current) return;
+    const nextPath = polygonRef.current
+      .getPath()
+      .getArray()
+      .map((latLng) => ({ lat: latLng.lat(), lng: latLng.lng() }));
+
+    setPaths(nextPath);
+  };
+
   const handlePolygonLoad = (polygon) => {
     polygonRef.current = polygon;
-
-    // challenge here is to sync imperative Google Maps vs. declarative React State
-
-    // google.maps.event.addListener -> polygon.getPaths()
-    // listen for 'insert_at', 'set_at'
-    // possible duplicate events fired for 'insert at'
-    // https://codesandbox.io/s/reactgooglemapsapi-editing-a-polygon-popr2
+    // previously we had event listeners in here
+    // but they were superseded by the mouse up event anyway
   };
+
+  // !! #################################
+  // !! ########### Rendering ###########
+  // !! #################################
 
   return (
     <Layout
@@ -95,6 +118,7 @@ const Index = () => {
                 paths={paths}
                 editable={true}
                 onLoad={handlePolygonLoad}
+                onMouseUp={handlePolygonEdit}
               ></Polygon>
             ) : null}
           </GoogleMap>
