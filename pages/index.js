@@ -2,6 +2,7 @@ import Layout from "../components/Layout";
 import { GoogleMap, useLoadScript, Polygon } from "@react-google-maps/api";
 import { useState, useRef, useMemo } from "react";
 import { getAreaOfPolygon } from "geolib";
+import About from "../components/About";
 import PlacesSearch from "../components/PlacesSearch";
 import PolygonUI from "../components/PolygonUI";
 import AreaDisplay from "../components/AreaDisplay";
@@ -141,7 +142,11 @@ const Index = () => {
       {loadError ? <span>{""}</span> : null}
       {isLoaded ? (
         <>
-          <PlacesSearch onPlaceSelect={handlePlaceSelect}></PlacesSearch>
+          <About className="mt-4 w-full sm:w-1/2"></About>
+          <PlacesSearch
+            className="mt-4"
+            onPlaceSelect={handlePlaceSelect}
+          ></PlacesSearch>
           <PolygonUI
             isDrawing={isDrawing}
             onDrawToggle={() => setIsDrawing((prev) => !prev)}

@@ -5,7 +5,7 @@ const InstallationDetails = ({
 }) => {
   const renderReadableNumber = (number, unit = "") => {
     const options = {
-      notation: number > 1_000_000_000 ? "scientific" : standard,
+      notation: number > 1_000_000_000 ? "scientific" : "standard",
       maximumFractionDigits: 0,
     };
     return (

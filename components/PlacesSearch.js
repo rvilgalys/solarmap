@@ -1,7 +1,7 @@
 import { Autocomplete } from "@react-google-maps/api";
 import { useRef } from "react";
 
-const PlacesSearch = ({ onPlaceSelect }) => {
+const PlacesSearch = ({ onPlaceSelect, className = "" }) => {
   if (!google) return null;
   const autoCompleteObj = useRef(null);
 
@@ -16,7 +16,7 @@ const PlacesSearch = ({ onPlaceSelect }) => {
   return (
     <label
       htmlFor="places-autocomplete"
-      className="w-3/4 sm:w-1/2 flex flex-col"
+      className={className + " w-3/4 sm:w-1/2 flex flex-col"}
     >
       <span>{"Location"}</span>
       <Autocomplete
