@@ -83,6 +83,8 @@ const Index = () => {
   };
 
   const handleMapClick = (click) => {
+    // for drawing shapes -- we either want to start a new shape or add to the existing shape
+
     if (!isDrawing) return;
     if (!paths) {
       setPaths([{ lat: click.latLng.lat(), lng: click.latLng.lng() }]);

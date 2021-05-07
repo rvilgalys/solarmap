@@ -7,18 +7,16 @@ const AreaDisplay = ({
   // uses km^2 and scientific notation where appropriate
 
   const renderReadableArea = (area) => {
-    const unit = area > 1000 ? "kilometer" : "meter";
+    const unit = area > 1000 ? "km" : "m";
     const number = area > 1000 ? area / 1000 : area;
     const options = {
       notation: area > 1_000_000_000 ? "scientific" : "standard",
-      style: "unit",
-      unit,
-      unitDisplay: "short",
       maximumFractionDigits: 1,
     };
     return (
       <span className="ml-2 text-2xl font-display">
         {number.toLocaleString("en-US", options)}
+        {" " + unit}
         <sup>2</sup>
       </span>
     );

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 /**
- * Polygon Tool Selection
+ * Polygon Tool Selection, includes hotkey bindings
  */
 const PolygonUI = ({
   className = "",
