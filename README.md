@@ -2,6 +2,7 @@
 Rim Vilgalys
 vilgalys@gmail.com
 
+[See a live version here](https://solarmap-vilgalys.vercel.app/)
 ## Features
 * Exposes a map with a searchable address
 * User can draw Polygon
