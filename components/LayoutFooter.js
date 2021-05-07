@@ -10,7 +10,8 @@ const LayoutFooter = () => {
           target="_blank"
         >
           Rim Vilgalys
-        </a>
+        </a>{" "}
+        in May 2021.
       </span>
     </footer>
   );
