@@ -1,6 +1,6 @@
 const About = ({ className = "" }) => {
   return (
-    <article className={className + " "}>
+    <article className={className + " p-4"}>
       <span>
         The Solar Map is a small project that calculates the{" "}
         <a
