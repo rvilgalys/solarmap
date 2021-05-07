@@ -1,6 +1,9 @@
 import { Autocomplete } from "@react-google-maps/api";
 import { useRef } from "react";
 
+/**
+ * Wrapper for Google Places Autocomplete
+ */
 const PlacesSearch = ({ onPlaceSelect, className = "" }) => {
   if (!google) return null;
   const autoCompleteObj = useRef(null);

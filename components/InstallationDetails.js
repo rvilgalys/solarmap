@@ -3,6 +3,8 @@ const InstallationDetails = ({
   totalNumberPanels,
   className = "",
 }) => {
+  // uses scientific notation where appropriate for large kWp
+
   const renderReadableNumber = (number, unit = "") => {
     const options = {
       notation: number > 1_000_000_000 ? "scientific" : "standard",

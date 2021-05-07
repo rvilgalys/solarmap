@@ -28,7 +28,7 @@ const Index = () => {
   });
   const [panelNominalPower_W, setPanelNominalPower_W] = useState(350);
 
-  // trivia: map center is Uluru, Australia
+  // trivia time: map center is Uluru, Australia
   const [mapCenter, setMapCenter] = useState({
     lat: -25.3444,
     lng: 131.0369,
@@ -53,15 +53,16 @@ const Index = () => {
 
   const totalNumberPanels = useMemo(() => {
     if (!area_m3) return null;
+    // in an ideal world this would use a packing algorithm
+    // a good halfway measure would be to brute force test at different angles
+    // for the purposes here, we're just going to work out the total area / panel dimensions
     return Math.floor(parseInt(area_m3) / parseInt(areaOfPanel_m3));
   }, [area_m3, areaOfPanel_m3]);
 
   const totalNominalPower_kW = useMemo(() => {
     if (!totalNumberPanels) return null;
-    // in an ideal world this would use a packing algorithm
-    // a good halfway measure would be to brute force test at different angles
-    // for the purposes here, we're just going to work out the total area / panel dimensions
-
+    // this is probably not how a real life solar installation actually works
+    // as a lot will depend on the other infrastructure besides panels
     return (totalNumberPanels * panelNominalPower_W) / 1000;
   }, [totalNumberPanels, panelNominalPower_W]);
 

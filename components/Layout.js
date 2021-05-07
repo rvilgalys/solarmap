@@ -2,6 +2,10 @@ import LayoutHead from "./LayoutHead";
 import LayoutHeader from "./LayoutHeader";
 import LayoutFooter from "./LayoutFooter";
 
+/**
+ * Wrapper Class for our App
+ * can handle dark / light mode
+ */
 const Layout = ({
   title = null,
   children,

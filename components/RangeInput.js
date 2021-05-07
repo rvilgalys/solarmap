@@ -1,5 +1,10 @@
 import { Range } from "react-range";
 
+const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+
+/**
+ * Utility wrapper for the react-range component. Includes an input.
+ */
 const RangeInput = ({
   className = "",
   value = 50,
@@ -10,6 +15,18 @@ const RangeInput = ({
   labelText = "label",
   onChange,
 }) => {
+  const handleSliderChange = (value) => {
+    onChange(value);
+  };
+
+  const handleInputChange = (e) => {
+    const newValue = e.target.value;
+    // there's a small issue here where the value isn't properly clamped
+    // causing the slider to bounce around while typing
+    // to fix we could use a second stateful value that's updated to newValue onBlur
+    onChange(newValue);
+  };
+
   return (
     <div className={className + " w-full flex items-center justify-between"}>
       <Range
@@ -17,7 +34,7 @@ const RangeInput = ({
         min={min}
         max={max}
         values={[value]}
-        onChange={onChange}
+        onChange={handleSliderChange}
         renderTrack={({ props, children }) => (
           <div
             {...props}
@@ -36,7 +53,7 @@ const RangeInput = ({
           className="w-20 text-gray-900 rounded"
           type="number"
           value={value}
-          onChange={onChange}
+          onChange={handleInputChange}
         ></input>
       </label>
     </div>

@@ -1,6 +1,9 @@
 import MoonIcon from "./MoonIcon";
 import SunIcon from "./SunIcon";
 
+/**
+ * Actual Page Header
+ */
 const LayoutHeader = ({ colorMode = "dark", onColorModeChange }) => {
   return (
     <header className="w-full p-4 flex items-center topo-bg">

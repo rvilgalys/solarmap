@@ -3,6 +3,9 @@ const AreaDisplay = ({
   area_m3 = 1000,
   isAreaSelected = false,
 }) => {
+  // render fuction to handle large areas ->
+  // uses km^2 and scientific notation where appropriate
+
   const renderReadableArea = (area) => {
     const unit = area > 1000 ? "kilometer" : "meter";
     const number = area > 1000 ? area / 1000 : area;

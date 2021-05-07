@@ -1,5 +1,7 @@
 import Head from "next/head";
-
+/**
+ * HTML Header
+ */
 const LayoutHead = ({ title = "Default Project Title" }) => {
   return (
     <Head>

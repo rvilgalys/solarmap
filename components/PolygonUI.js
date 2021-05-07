@@ -1,5 +1,8 @@
 import { useEffect } from "react";
 
+/**
+ * Polygon Tool Selection
+ */
 const PolygonUI = ({
   className = "",
   isDrawing = false,
