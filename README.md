@@ -29,6 +29,6 @@ Provide a NEXT_PUBLIC_GOOGLE_API_KEY in an `.env.local` file in the root directo
 
 ## Assumptions and Limitations
 
-* Average Solar Panel Size is 65" L x 39" W (https://news.energysage.com/average-solar-panel-size-weight/)
+* Average Solar Panel Size is 65" L x 39" W or 164 cm x 99 cm (https://news.energysage.com/average-solar-panel-size-weight/)
 * It is assumed that drawn polygons will fit solar panels -- area is calculated but a packing algorithm is not used to find the ideal arrangement of panels.
 * Wattage for Panels can Range from 50 Wp to 500 Wp (https://news.energysage.com/what-is-the-power-output-of-a-solar-panel/)

@@ -12,7 +12,7 @@ const Layout = ({
   return (
     <div
       id="background-wrapper"
-      className={colorModeClassName + " w-screen h-screen overflow-auto"}
+      className={colorModeClassName + " w-screen h-screen overflow-auto pb-24"}
     >
       <LayoutHead title={title ?? "Default Project Title"}></LayoutHead>
       <LayoutHeader

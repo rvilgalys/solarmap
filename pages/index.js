@@ -5,6 +5,7 @@ import { getAreaOfPolygon } from "geolib";
 import PlacesSearch from "../components/PlacesSearch";
 import PolygonUI from "../components/PolygonUI";
 import AreaDisplay from "../components/AreaDisplay";
+import SolarPanelDetails from "../components/SolarPanelDetails";
 
 const libraries = ["places"]; // prevents reloading of google maps
 
@@ -19,6 +20,11 @@ const Index = () => {
   });
   const [colorMode, setColorMode] = useState("dark"); // dark, light
   const [isDrawing, setIsDrawing] = useState(false);
+  const [panelDimensions, setPanelDimensions] = useState({
+    length: 164,
+    width: 99,
+  });
+  const [panelNominalPower, setPanelNominalPower] = useState(350);
 
   // trivia: map center is Uluru, Australia
   const [mapCenter, setMapCenter] = useState({
@@ -91,6 +97,14 @@ const Index = () => {
     // but they were superseded by the mouse up event anyway
   };
 
+  const handleDimensionsChange = (newDimensions) => {
+    setPanelDimensions((prev) => ({ ...prev, ...newDimensions }));
+  };
+
+  const handlePanelPowerChange = (newValue) => {
+    setPanelNominalPower(newValue);
+  };
+
   // !! #################################
   // !! ########### Rendering ###########
   // !! #################################
@@ -136,6 +150,13 @@ const Index = () => {
             isAreaSelected={paths !== null && paths.length > 2}
             area_m3={area_m3}
           ></AreaDisplay>
+          <SolarPanelDetails
+            className="mt-4"
+            panelDimensions={panelDimensions}
+            onDimensionsChange={handleDimensionsChange}
+            panelPower={panelNominalPower}
+            onPowerChange={handlePanelPowerChange}
+          ></SolarPanelDetails>
         </>
       ) : (
         <span className="text-xl border-b-2 border-red-500">
