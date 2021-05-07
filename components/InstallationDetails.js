@@ -11,7 +11,7 @@ const InstallationDetails = ({
       maximumFractionDigits: 0,
     };
     return (
-      <span className="ml-2 text-2xl font-display">
+      <span className="ml-2 text-2xl font-display border-b-2">
         {number.toLocaleString("en-US", options)}
         {unit ? " " + unit : ""}
       </span>
