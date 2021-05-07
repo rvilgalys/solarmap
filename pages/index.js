@@ -6,6 +6,7 @@ import PlacesSearch from "../components/PlacesSearch";
 import PolygonUI from "../components/PolygonUI";
 import AreaDisplay from "../components/AreaDisplay";
 import SolarPanelDetails from "../components/SolarPanelDetails";
+import InstallationDetails from "../components/InstallationDetails";
 
 const libraries = ["places"]; // prevents reloading of google maps
 
@@ -20,11 +21,11 @@ const Index = () => {
   });
   const [colorMode, setColorMode] = useState("dark"); // dark, light
   const [isDrawing, setIsDrawing] = useState(false);
-  const [panelDimensions, setPanelDimensions] = useState({
+  const [panelDimensions_cm, setPanelDimensions_cm] = useState({
     length: 164,
     width: 99,
   });
-  const [panelNominalPower, setPanelNominalPower] = useState(350);
+  const [panelNominalPower_W, setPanelNominalPower_W] = useState(350);
 
   // trivia: map center is Uluru, Australia
   const [mapCenter, setMapCenter] = useState({
@@ -36,10 +37,32 @@ const Index = () => {
   const googleMapRef = useRef(null);
   const polygonRef = useRef(null);
 
+  // !! ###################################################
+  // !! ########### Memoized Values (Biz Logic) ###########
+  // !! ###################################################
+
   const area_m3 = useMemo(() => {
     if (!paths) return null;
     return getAreaOfPolygon(paths);
   }, [paths]);
+
+  const areaOfPanel_m3 = useMemo(() => {
+    return (panelDimensions_cm.length / 100) * (panelDimensions_cm.width / 100);
+  }, [panelDimensions_cm]);
+
+  const totalNumberPanels = useMemo(() => {
+    if (!area_m3) return null;
+    return Math.floor(parseInt(area_m3) / parseInt(areaOfPanel_m3));
+  }, [area_m3, areaOfPanel_m3]);
+
+  const totalNominalPower_kW = useMemo(() => {
+    if (!totalNumberPanels) return null;
+    // in an ideal world this would use a packing algorithm
+    // a good halfway measure would be to brute force test at different angles
+    // for the purposes here, we're just going to work out the total area / panel dimensions
+
+    return (totalNumberPanels * panelNominalPower_W) / 1000;
+  }, [totalNumberPanels, panelNominalPower_W]);
 
   // !! ######################################
   // !! ########### Event Handlers ###########
@@ -98,11 +121,11 @@ const Index = () => {
   };
 
   const handleDimensionsChange = (newDimensions) => {
-    setPanelDimensions((prev) => ({ ...prev, ...newDimensions }));
+    setPanelDimensions_cm((prev) => ({ ...prev, ...newDimensions }));
   };
 
   const handlePanelPowerChange = (newValue) => {
-    setPanelNominalPower(newValue);
+    setPanelNominalPower_W(newValue);
   };
 
   // !! #################################
@@ -123,7 +146,7 @@ const Index = () => {
             isDrawing={isDrawing}
             onDrawToggle={() => setIsDrawing((prev) => !prev)}
             onClearShape={() => setPaths(null)}
-            className="mt-8"
+            className="mt-8 p-4 sm:p-2"
           ></PolygonUI>
           <GoogleMap
             zoom={3}
@@ -152,11 +175,18 @@ const Index = () => {
           ></AreaDisplay>
           <SolarPanelDetails
             className="mt-4"
-            panelDimensions={panelDimensions}
+            panelDimensions={panelDimensions_cm}
             onDimensionsChange={handleDimensionsChange}
-            panelPower={panelNominalPower}
+            panelPower={panelNominalPower_W}
             onPowerChange={handlePanelPowerChange}
           ></SolarPanelDetails>
+          {totalNominalPower_kW ? (
+            <InstallationDetails
+              className="mt-4"
+              totalNominalPower_kW={totalNominalPower_kW}
+              totalNumberPanels={totalNumberPanels}
+            ></InstallationDetails>
+          ) : null}
         </>
       ) : (
         <span className="text-xl border-b-2 border-red-500">

@@ -11,12 +11,16 @@ const SolarPanelDetails = ({
     <form
       className={
         className +
-        " w-full sm:w-3/4 grid grid-cols-12 gap-4 place-items-center"
+        " w-full sm:w-3/4 grid grid-cols-6 sm:grid-cols-12 gap-4 place-items-center p-4"
       }
       id="solar-panel-details"
       onSubmit={(e) => e.preventDefault()}
     >
-      <h2 className={"col-span-12 text-2xl font-display border-b w-full"}>
+      <h2
+        className={
+          "col-span-6 sm:col-span-12 text-2xl font-display border-b w-full"
+        }
+      >
         {"Solar Panel Details"}
       </h2>
       <span className="col-span-6">
@@ -61,7 +65,7 @@ const SolarPanelDetails = ({
         step={5}
         name={"panel-nominal-power"}
         labelText={"NP (Watts)"}
-        className="col-span-6"
+        className="col-span-6 p-4"
       ></RangeInput>
     </form>
   );
